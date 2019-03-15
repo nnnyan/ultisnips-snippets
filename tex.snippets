@@ -4,11 +4,34 @@ snippet .
 \documentclass[a4paper,${1:11pt}]{article}
 \usepackage{kotex}
 
+\begin{document}
+
 \title{$2}
 \author{$3}
 \maketitle
 
-\begin{document}
 ${0:${VISUAL}}
 \end{document}
+endsnippet
+
+snippet up "usepackage" b
+\usepackage$2{$1}$0
+endsnippet
+
+snippet lr "longrightarrow" w
+\longrightarrow
+endsnippet
+
+snippet Lr "Longrightarrow" w
+\Longrightarrow
+endsnippet
+
+snippet tikz "tikzpicture" b
+\begin{tikzpicture}
+	${0:${VISUAL}}
+\end{tikzpicture}
+endsnippet
+
+snippet drawp "draw plot" b
+\draw[scale=${1:0.5},domain=${2:-5:5},${3:smooth},variable=\\${4:x}] plot (\{${5:\\$4}\}, \{${6:\\$4}\});$0
 endsnippet
