@@ -4,6 +4,30 @@ extends c
 
 priority 1
 
+snippet .
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	${0:${VISUAL}}
+
+	return 0;
+}
+endsnippet
+
+snippet h
+#ifndef ${1:`!p snip.rv = ('__%s' % fn.replace('.', '_').upper())`}
+#define $1
+
+${0:${VISUAL}}
+
+#endif
+endsnippet
+
 snippet inc "include"
 #include <${1:iostream}>
 endsnippet
@@ -16,10 +40,16 @@ snippet cl "class .. (class)"
 class ${1:`!p snip.rv = snip.basename or "name"`}
 {
 public:
-	${1/(\w+).*/$1/} (${2:arguments});
-	virtual ~${1/(\w+).*/$1/} ();
+	${1/(\w+).*/$1/}(${2:arguments});
+	virtual ~${1/(\w+).*/$1/}();
 
 private:
 	${0:/* data */}
 };
+endsnippet
+
+snippet for "for"
+for (auto ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
+	${0:${VISUAL}}
+}
 endsnippet

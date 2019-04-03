@@ -1,13 +1,23 @@
 priority 0
 
+global !p
+import datetime
+
+def year():
+	return datetime.date.today().strftime('%Y년')
+
+def month_date():
+	return datetime.date.today().strftime(' %m월 %d일').replace(' 0', ' ').strip()
+endglobal
+
 snippet .
-\documentclass[a4paper,${1:11pt}]{article}
+\documentclass[a4paper,${1:11pt}]{${2:oblivoir}}
 \usepackage{kotex}
 
 \begin{document}
 
-\title{$2}
-\author{$3}
+\title{$3}
+\author{$4}
 \maketitle
 
 ${0:${VISUAL}}
@@ -18,11 +28,11 @@ snippet up "usepackage" b
 \usepackage$2{$1}$0
 endsnippet
 
-snippet lr "longrightarrow" w
+snippet lr "longrightarrow" i
 \longrightarrow
 endsnippet
 
-snippet Lr "Longrightarrow" w
+snippet Lr "Longrightarrow" i
 \Longrightarrow
 endsnippet
 
@@ -33,5 +43,23 @@ snippet tikz "tikzpicture" b
 endsnippet
 
 snippet drawp "draw plot" b
-\draw[scale=${1:0.5},domain=${2:-5:5},${3:smooth},variable=\\${4:x}] plot (\{${5:\\$4}\}, \{${6:\\$4}\});$0
+\draw[scale=${1:1},domain=${2:-5:5},samples=${3:100},${4:smooth},variable=\\${5:x}] plot (\{${6:\\$5}\}, \{${7:\\$5}\});$0
+endsnippet
+
+snippet v "\verb" i
+\verb${1:`}${0:${VISUAL}}$1
+endsnippet
+
+snippet cu "cite url" i
+\cite{url:$1}$0
+endsnippet
+
+snippet bib "thebibliography"
+\begin{thebibliography}{${1:99}}
+	${0:${VISUAL}}
+\end{thebibliography}
+endsnippet
+
+snippet bibu "bibitem url"
+\bibitem{url:${1:label}} ${2:title}. \url{$3} `!p snip.rv = year()` ${4:`!p snip.rv = month_date()`}에 확인함.
 endsnippet
